@@ -44,7 +44,7 @@ Are you sure you want to continue connecting?
 Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 ```
 
-If you then see:
+If you still see:
 
 ```
 git@github.com: Permission denied (publickey)
@@ -112,7 +112,7 @@ ssh -T git@github.com
 You should now see:
 
 ```
-Hi Nyctophilia58! You've successfully authenticated, but GitHub does not provide shell access.
+Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 ---
