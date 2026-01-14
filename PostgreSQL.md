@@ -12,9 +12,10 @@ This guide provides step-by-step commands to install PostgreSQL on Linux (Arch-b
 - [Step 4: Access PostgreSQL Terminal](#step-4-access-postgresql-terminal)
 - [Step 5: Create a New Database User](#step-5-create-a-new-database-user)
 - [Step 6: Create a New Database](#step-6-create-a-new-database)
-- [Step 7: Grant Privileges to the New User](#step-7-grant-privileges-to-the-new-user)
-- [Step 8: Connect as the New User](#step-8-connect-as-the-new-user)
-- [Step 9: Useful PostgreSQL Commands](#step-9-useful-postgresql-commands)
+- [Step 7: Create a New Table](#step-7-create-a-new-table)
+- [Step 8: Grant Privileges to the New User](#step-7-grant-privileges-to-the-new-user)
+- [Step 9: Connect as the New User](#step-8-connect-as-the-new-user)
+- [Step 10: Useful PostgreSQL Commands](#step-9-useful-postgresql-commands)
 - [Notes](#notes)
 
 ---
@@ -114,7 +115,63 @@ CREATE DATABASE myprojectdb;
 
 ---
 
-## Step 7: Grant Privileges to the New User
+## Step 7: Create a New Table
+
+- Connect to your database
+
+  ```sql
+  \c myprojectdb
+  ```
+
+- Enable UUID Support
+
+  ```sql
+  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  ```
+
+- Create a Table
+  
+  ```sql
+  CREATE TABLE tablename (...);
+  ```
+
+There might be a error message
+
+```makefile
+ERROR: permission denied for schema public
+```
+
+**To solve this:**
+
+- Login as postgres:
+  
+  ```bash
+  psql -U postgres
+  ```
+  
+- Connect to your DB:
+  
+  ```sql
+  \c myprojectdb
+  ```
+  
+- Then run:
+  
+  ```sql
+  GRANT ALL ON SCHEMA public TO myuser;
+  ALTER SCHEMA public OWNER TO myuser;
+  \q
+  ```
+- Now reconnect as your app user:
+  
+  ```bash
+  psql -U myuser -d myprojectdb
+  ```
+Now re-run the table creation commands.   
+
+---
+
+## Step 8: Grant Privileges to the New User
 
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE myprojectdb TO myuser;
@@ -122,7 +179,7 @@ GRANT ALL PRIVILEGES ON DATABASE myprojectdb TO myuser;
 
 ---
 
-## Step 8: Connect as the New User
+## Step 9: Connect as the New User
 
 From `psql` (inside `postgres` user):
 
@@ -138,7 +195,7 @@ psql -U myuser -d myprojectdb
 
 ---
 
-## Step 9: Useful PostgreSQL Commands
+## Step 10: Useful PostgreSQL Commands
 
 | Command | Description |
 | --- | --- |
