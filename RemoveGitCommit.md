@@ -28,7 +28,7 @@ git pull
 
 and see:
 
-```
+```makefile
 The authenticity of host 'github.com (20.205.243.166)' can't be established.
 ED25519 key fingerprint is: SHA256:+DiY3wvvV6TuJJhbpZisFzLDA0zPMSvHdkr4UvCOqU
 This key is not known by any other names.
@@ -40,13 +40,13 @@ Are you sure you want to continue connecting?
 1. Check that the fingerprint matches [GitHub’s official SSH key fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
 2. If it matches, type `yes` and press **Enter**. You should see:
 
-```
+```makefile
 Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 ```
 
 If you still see:
 
-```
+```makefile
 git@github.com: Permission denied (publickey)
 fatal: Could not read from remote repository.
 Please make sure you have the correct access rights and the repository exists.
@@ -66,7 +66,7 @@ git remote -v
 
 It should show:
 
-```
+```makefile
 origin  git@github.com:username/snadders.git (fetch)
 origin  git@github.com:username/snadders.git (push)
 ```
@@ -79,7 +79,7 @@ ssh -T git@github.com
 
 - Success message:
 
-```
+```makefile
 Hi <your-username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
@@ -111,7 +111,7 @@ ssh -T git@github.com
 
 You should now see:
 
-```
+```makefile
 Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
