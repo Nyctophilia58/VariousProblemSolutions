@@ -29,7 +29,7 @@ This guide provides step-by-step commands to install PostgreSQL on Linux (Arch-b
 
   - On Ubuntu/Debian:
 
-    ```
+    ```bash
     sudo apt update
     sudo apt install postgresql postgresql-contrib
     ```
@@ -71,7 +71,7 @@ sudo systemctl enable postgresql
 
 To check status:
 
-```
+```bash
 sudo systemctl status postgresql
 ```
 
