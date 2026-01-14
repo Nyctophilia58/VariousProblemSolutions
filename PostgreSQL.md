@@ -36,7 +36,7 @@ This guide provides step-by-step commands to install PostgreSQL on Linux (Arch-b
 
 Installation automatically creates a user named postgres. You can login to that user
 
-```
+```bash
 sudo -iu postgres
 ```
 
@@ -81,14 +81,14 @@ sudo systemctl status postgresql
 
 Switch to your user(in my case postgres) and start psql:
 
-``` bash
+```bash
 sudo su - postgres
 psql
 ```
 
 You should see:
 
-``` makefile
+```makefile
 postgres=#
 ```
 
@@ -98,7 +98,7 @@ postgres=#
 
 Inside `psql`:
 
-```bash
+```sql
 CREATE USER myuser WITH PASSWORD 'mypassword';
 ```
 
@@ -108,7 +108,7 @@ CREATE USER myuser WITH PASSWORD 'mypassword';
 
 ## Step 6: Create a New Database
 
-```
+```sql
 CREATE DATABASE myprojectdb;
 ```
 
@@ -116,7 +116,7 @@ CREATE DATABASE myprojectdb;
 
 ## Step 7: Grant Privileges to the New User
 
-```
+```sql
 GRANT ALL PRIVILEGES ON DATABASE myprojectdb TO myuser;
 ```
 
@@ -126,13 +126,13 @@ GRANT ALL PRIVILEGES ON DATABASE myprojectdb TO myuser;
 
 From `psql` (inside `postgres` user):
 
-```
+```sql
 \c myprojectdb myuser
 ```
 
 Or directly from Linux shell:
 
-```
+```bash
 psql -U myuser -d myprojectdb
 ```
 
