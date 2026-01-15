@@ -13,9 +13,9 @@ This guide provides step-by-step commands to install PostgreSQL on Linux (Arch-b
 - [Step 5: Create a New Database User](#step-5-create-a-new-database-user)
 - [Step 6: Create a New Database](#step-6-create-a-new-database)
 - [Step 7: Create a New Table](#step-7-create-a-new-table)
-- [Step 8: Grant Privileges to the New User](#step-7-grant-privileges-to-the-new-user)
-- [Step 9: Connect as the New User](#step-8-connect-as-the-new-user)
-- [Step 10: Useful PostgreSQL Commands](#step-9-useful-postgresql-commands)
+- [Step 8: Grant Privileges to the New User](#step-8-grant-privileges-to-the-new-user)
+- [Step 9: Connect as the New User](#step-9-connect-as-the-new-user)
+- [Step 10: Useful PostgreSQL Commands](#step-10-useful-postgresql-commands)
 - [Notes](#notes)
 
 ---
@@ -92,6 +92,63 @@ You should see:
 ```makefile
 postgres=#
 ```
+
+- **When you try to switch user some errors might arise regarding password**
+  
+  - Solution:
+    
+    You must tell PostgreSQL to allow password login instead of peer login.
+    
+    - Step 1 – Open pg_hba.conf
+    
+      Run:
+      
+      ```pgsql
+      sudo nano /var/lib/postgres/data/pg_hba.conf
+      ```
+      
+      Find this block:
+      
+      ```pgsql
+      # TYPE  DATABASE        USER            ADDRESS                 METHOD
+      local   all             all                                     peer/trust
+      ```
+      
+      Change `peer` or `trust` to `md5`. Save and exit.
+      
+      **Why this matters**
+      
+      | Mode | What happens |
+      | --- | --- |
+      | `peer` | Linux user must match DB user |
+      | `trust` | No security. Anyone can access everything |
+      | `md5` | Proper password-based authentication. |
+      
+    - Step 2 – Restart PostgreSQL
+    
+      ```bash
+      sudo systemctl restart postgresql
+      ```
+
+    - Step 3 – Set password again (important)
+
+      Now re-set the password to ensure it is stored with md5:
+
+      ```pgsql
+      sudo -u postgres psql
+      ALTER USER myuser WITH PASSWORD 'your_password';
+      \q
+      ```
+
+    - Step 4 – Test properly
+    
+      Now log in exactly how your app will:
+
+      ```nginx
+      psql -U task_user -d your_database -W
+      ```
+      
+      Enter the password. You should now log in successfully.
 
 ---
 
