@@ -1,6 +1,6 @@
 # UV Setup Guide
 
-This guide provides step-by-step commands to install UV, initialize it, and prepare it.
+This guide provides step-by-step commands to install UV and initialize it.
 
 ---
 
@@ -8,19 +8,11 @@ This guide provides step-by-step commands to install UV, initialize it, and prep
 
 - [Step 1: Install UV](#step-1-install-uv)
 - [Step 2: Initialize UV](#step-2-initialize-uv)
-- [Step 3: Start and Enable PostgreSQL Service](#step-3-start-and-enable-postgresql-service)
-- [Step 4: Access PostgreSQL Terminal](#step-4-access-postgresql-terminal)
-- [Step 5: Create a New Database User](#step-5-create-a-new-database-user)
-- [Step 6: Create a New Database](#step-6-create-a-new-database)
-- [Step 7: Create a New Table](#step-7-create-a-new-table)
-- [Step 8: Grant Privileges to the New User](#step-8-grant-privileges-to-the-new-user)
-- [Step 9: Connect as the New User](#step-9-connect-as-the-new-user)
-- [Step 10: Useful PostgreSQL Commands](#step-10-useful-postgresql-commands)
-- [Notes](#notes)
 
 ---
 
 ## Step 1: Install UV
+
 UV provides a standalone installer to download and install uv:
 
   - On macOS and Linux:
