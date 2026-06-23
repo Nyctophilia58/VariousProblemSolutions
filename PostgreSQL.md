@@ -59,6 +59,28 @@ initdb --locale en_US.UTF-8 -D /var/lib/postgres/data
 
 This command should create the cluster. To check use `ls` and you should see the **data** folder.
 
+### Fix Locales
+```bash
+sudo nano /etc/locale.gen
+```
+Find and uncomment this line (remove the #): `en_US.UTF-8 UTF-8`
+Save with `Ctrl+O`, then `Ctrl+X` to exit.
+
+Generate Locales
+```bash
+sudo locale-gen
+```
+You should see:
+```
+Generating locales...
+en_US.UTF-8... done
+```
+
+Set System Locale
+```bash
+sudo localectl set-locale LANG=en_US.UTF-8
+```
+Then try initializing cluster again.
 ---
 
 ## Step 3: Start and Enable PostgreSQL Service
