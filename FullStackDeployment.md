@@ -12,7 +12,7 @@ This guide helps you with deployment configuration and step-by-step instructions
 ### MongoDB Atlas
 - Create cluster, DB user, and whitelist network access. Copy the connection string.
 
-### PostgreSQl
+### PostgreSQL
 - Project → New → PostgreSQL → name it your-db → create
 - Copy these values:
   ```doc
