@@ -7,8 +7,31 @@ This guide helps you with deployment configuration and step-by-step instructions
 - Otherwise, push the full project (recommended) and use the monorepo paths when configuring Render/Vercel.
 
 
-**2) MongoDB Atlas**
+**2) Database Connection
+
+### MongoDB Atlas
 - Create cluster, DB user, and whitelist network access. Copy the connection string.
+
+### PostgreSQl
+- Project → New → PostgreSQL → name it your-db → create
+- Copy these values:
+  ```doc
+  Internal Database URL
+  Hostname
+  Port
+  Database
+  Username
+  Password
+  ```
+  Add them to your backend Environment Variables
+
+### One Problem — Tables Won't Exist Yet
+- Install [Render CLI](https://render.com/docs/cli) and login
+- Go to your-db on render
+- Click on `connect`
+- Go to `External Database URL` and copy the `PSQL Command`
+- Go to terminal and paste the `PSQL Command`.
+- Once you're connected and see the `your-db=>` prompt, create your tables.
 
 
 **3) Render (backend)**
@@ -23,6 +46,18 @@ This guide helps you with deployment configuration and step-by-step instructions
   - `ENABLE_REMINDER_WORKER` = `false` for the web service
   - `REMINDER_CHECK_MS` (optional)
 - Deploy and check logs.
+
+  ### Possible error
+  If any module error arises like
+  ```bash
+  Error: Cannot find module '/opt/render/project/src/backend/dist/server.js'
+  ```
+  Check `tsconfig.json` and remove:
+  ```json
+  "allowImportingTsExtensions": true,
+  "noEmit": true,
+  ```
+  push to github
 
 
 **4) (Optional) Render Background Worker (reminders)**
