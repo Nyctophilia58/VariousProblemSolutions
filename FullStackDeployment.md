@@ -100,5 +100,6 @@ This guide helps you with deployment configuration and step-by-step instructions
         "destination": "/index.html"
       }
     ]
-  }```
+  }
+  ```
 - Redeploy frontend
